@@ -1,2 +1,2 @@
 # pyspedas-validation
- Tools for validating the data products in pySPEDAS from IDL
+This repo contains tools for validating that the data products in pySPEDAS match those in IDL SPEDAS
