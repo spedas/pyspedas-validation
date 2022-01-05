@@ -1,14 +1,14 @@
 ;+
 ;
 ; OBJECT:
-;       py_validation_example_ut
+;       validation_example_ut
 ;       
 ; PURPOSE:
 ;       This object is an example of using MGunit to build unit tests that validate Python code
 ; 
 ; NOTES:
 ;       To run:
-;         IDL> mgunit, 'py_validation_example_ut'
+;         IDL> mgunit, 'validation_example_ut'
 ;       
 ;       For the MMS validation tests, see:
 ;         projects/mms/common/tests/mms_python_validation_ut__define.pro
@@ -20,7 +20,7 @@
 ;-
 
 ; the individual unit tests are implemented as methods that start with "test_"
-function py_validation_example_ut::test_example
+function validation_example_ut::test_example
   ; first run IDL code to produce some tplot variables
   store_data, 'tplot_variable', data={x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], y: [0, 0, 1, 0, 0, 2, 2, 1, 0, 1]}
   
@@ -41,10 +41,10 @@ function py_validation_example_ut::test_example
 end
 
 ; the setup procedure runs before each test runs
-pro py_validation_example_ut::setup
+pro validation_example_ut::setup
   del_data, '*'
 end
 
 pro py_validation_example_ut__define
-  define = { py_validation_example_ut, inherits MGutTestCase }
+  define = { validation_example_ut, inherits MGutTestCase }
 end
