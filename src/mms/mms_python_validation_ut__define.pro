@@ -11,6 +11,17 @@
 ; $URL: svn+ssh://thmsvn@ambrosia.ssl.berkeley.edu/repos/spdsoft/trunk/projects/mms/common/tests/mms_python_validation_ut__define.pro $
 ;-
 
+function mms_python_validation_ut::test_feeps_gyrophase_electron
+   mms_load_feeps, trange=['2017-07-11/22:34', '2017-07-11/22:34:25'], data_rate='brst', probe=3
+   mms_feeps_gpd, trange=['2017-07-11/22:34', '2017-07-11/22:34:25'], data_rate='brst', probe=3
+   py_script = ["from pyspedas.mms.feeps.mms_feeps_gpd import mms_feeps_gpd", $
+                "import pyspedas", $
+                "feeps_vars = pyspedas.mms.feeps(data_rate='brst', trange=['2017-07-11/22:34', '2017-07-11/22:34:25'], probe=3)", $
+                "mms_feeps_gpd(trange=['2017-07-11/22:34', '2017-07-11/22:34:25'], data_rate='brst', probe=3)"]
+   vars = ['mms3_epd_feeps_brst_l2_electron_intensity_50-500keV_gpd']
+   return, spd_run_py_validation(py_script, vars)
+end
+
 function mms_python_validation_ut::test_fac_matrix_make
   mms_load_fgm, trange=['2015-10-16', '2015-10-17']
   fac_matrix_make, 'mms1_fgm_b_gse_srvy_l2_bvec'
@@ -143,7 +154,7 @@ function mms_python_validation_ut::test_scm_dpwrspc_brst
     "mms_load_scm(trange=['2015-10-16/13:06', '2015-10-16/13:07'], data_rate='brst', probe=1)", $
     "tdpwrspc('mms1_scm_acb_gse_scb_brst_l2', nboxpoints=8192, nshiftpoints=8192, binsize=1)"]
   vars = ['mms1_scm_acb_gse_scb_brst_l2_x_dpwrspc', 'mms1_scm_acb_gse_scb_brst_l2_y_dpwrspc', 'mms1_scm_acb_gse_scb_brst_l2_z_dpwrspc']
-  return, spd_run_py_validation(py_script, vars, tol=1e-4)
+  return, spd_run_py_validation(py_script, vars, tol=1e-2)
 end
 
 function mms_python_validation_ut::test_edp_default
