@@ -48,11 +48,11 @@ function mms_python_validation_ut::test_lingradest_curl
   positions = 'mms'+['1', '2', '3', '4']+'_fgm_r_gse_brst_l2'
   mms_lingradest, fields=fields, positions=positions, suffix='_lingradest'
   
-  py_script = ['import pyspedas', $
+  py_script = ["import pyspedas", $
     "from pyspedas.mms import lingradest", $
-    "pyspedas.mms.fgm(trange=['2015-10-30/05:15:45', '2015-10-30/05:15:48'], get_fgm_ephemeris=True, probes=[1, 2, 3, 4], data_rate='brst', time_clip=True)", $
-    "lingradest(fields=fields, positions=positions, suffix='_lingradest')"]
-    
+    "pyspedas.mms.fgm(trange=['2015-10-30/05:15:45', '2015-10-30/05:15:48'], get_fgm_ephemeris=True, probe=[1, 2, 3, 4], data_rate='brst', time_clip=True)", $
+    "lingradest(fields=['mms1_fgm_b_gse_brst_l2_bvec','mms2_fgm_b_gse_brst_l2_bvec','mms3_fgm_b_gse_brst_l2_bvec','mms4_fgm_b_gse_brst_l2_bvec'], positions=['mms1_fgm_r_gse_brst_l2','mms2_fgm_r_gse_brst_l2','mms3_fgm_r_gse_brst_l2','mms4_fgm_r_gse_brst_l2'], suffix='_lingradest')"]
+
   vars = ['Bt_lingradest', $
     'Bx_lingradest', $
     'By_lingradest', $
@@ -71,7 +71,7 @@ function mms_python_validation_ut::test_lingradest_curl
     'curvy_lingradest', $
     'curvz_lingradest', $
     'Rc_1000km_lingradest']
-  return, spd_run_py_validation(py_script, vars)
+  return, spd_run_py_validation(py_script, vars, tol=1e-1)
 end
 
 function mms_python_validation_ut::test_feeps_gyrophase_electron
